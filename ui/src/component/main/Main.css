@@ -1,0 +1,35 @@
+body{
+    margin: 0 auto;
+    border: 1px solid red;
+}
+
+.title-container > h1{
+    font-size: 23px;
+}
+
+.btn-row{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
+    border-top: 1px solid #E3E3E3;
+    border-bottom: 1px solid #E3E3E3;
+}
+
+.btn-row > button{
+    width: 62px;
+    margin: 8px 0 8px 8px;
+    border: none;
+    border-radius: 100px;
+    outline: none;
+    background: #E9A945;
+    color: white;
+    font-weight: bold;
+}
+.btn-row > .long-btn{
+    width: 83px;
+}
+.btn-row > .longest-btn{
+    width: 96px;
+}
+
