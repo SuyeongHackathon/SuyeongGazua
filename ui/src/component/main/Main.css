@@ -1,35 +1,39 @@
-body{
-    margin: 0 auto;
-    border: 1px solid red;
+body {
+  border: 1px solid red;
+}
+.container {
+  margin-left: 37px;
+}
+.title-container > h1 {
+  display: inline;
+  font-size: 23px;
+}
+.btn-info {
+  font-size: 22px;
 }
 
-.title-container > h1{
-    font-size: 23px;
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
 }
 
-.btn-row{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    margin: 0 auto;
-    border-top: 1px solid #E3E3E3;
-    border-bottom: 1px solid #E3E3E3;
+.btn-row > button {
+  width: 62px;
+  margin: 8px 0 8px 8px;
+  border: none;
+  border-radius: 100px;
+  outline: none;
+  background: #e9a945;
+  color: white;
+  font-weight: bold;
 }
-
-.btn-row > button{
-    width: 62px;
-    margin: 8px 0 8px 8px;
-    border: none;
-    border-radius: 100px;
-    outline: none;
-    background: #E9A945;
-    color: white;
-    font-weight: bold;
+.btn-row > .btn-route {
+  width: 83px;
 }
-.btn-row > .long-btn{
-    width: 83px;
+.btn-row > .btn-experience {
+  width: 96px;
 }
-.btn-row > .longest-btn{
-    width: 96px;
-}
-
