@@ -4,13 +4,14 @@ import dataJson from "./const/sooyeong-gu-data";
 // 유저 데이터 및 로그인을 처리
 
 const initialState = {
-  weather: null,
-    data: {},
+  weather: "B",
+  data: {},
 };
 
 const DataContext = createContext({
-  weather: null,
+  weather: "B",
   data: {},
+  setWeather: () => {},
 });
 
 //==============================================================================//
@@ -18,16 +19,32 @@ const DataContext = createContext({
 function dataReducer(state, action) {
   switch (action.type) {
     case "setWeather":
-        //TODO: json 호출 후 날씨별 filtering
+      //TODO: json 호출 후 날씨별 filtering
 
-          dataJson.forEach((e)=>console.log(e))
+      let res = {};
 
+      for (const [key, value] of Object.entries(dataJson)) {
+        let tempArray = Object.values(value).filter(
+          (e) => e["필터"] === action.payload || "B"
+        );
+        res[key] = tempArray.reduce(
+          (ac, a, i) => ({
+            ...ac,
+            [i]: a,
+          }),
+          {}
+        );
+      }
+      console.log(res);
 
-          
-          return {
-          ...state, weather : action.payload
+      // dataJson.forEach((key, value) => console.log(key));
+
+      return {
+        ...state,
+        weather: action.payload,
+        data: res,
       };
-  
+
     default:
   }
 }
@@ -44,14 +61,14 @@ function DataProvider(props, children) {
     });
   }
 
-
   return (
     <DataContext.Provider
-      value={{ weather: state.user, data: state.data }}
-          {...props}>
-          {/* <div>{state}</div> */}
+      value={{ weather: state.user, data: state.data, setWeather }}
+      {...props}
+    >
+      {/* <div>{state}</div> */}
     </DataContext.Provider>
   );
 }
 
-export default DataProvider;
+export { DataProvider, DataContext };

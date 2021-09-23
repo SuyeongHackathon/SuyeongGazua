@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+
 import "./Main.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { DataContext } from "../../DataProvider";
 
 const Main = () => {
+  const { data, setWeather } = useContext(DataContext);
+
+  useEffect(() => {
+    if (data) {
+      setWeather("S");
+    }
+    return () => {};
+  }, []);
+
+  function reload(weather) {
+    //날씨 API 로딩 완료 후 해당 함수 호출
+    //weather를 S or W로 분류
+    setWeather(weather);
+  }
+
   return (
     <div className="container">
       {/* 찐 */}
