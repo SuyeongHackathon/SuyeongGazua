@@ -2,7 +2,6 @@ import React, { useReducer, createContext } from "react";
 import dataJson from "./const/sooyeong-gu-data";
 
 // 유저 데이터 및 로그인을 처리
-
 const initialState = {
   weather: "B",
   data: {},
@@ -19,8 +18,7 @@ const DataContext = createContext({
 function dataReducer(state, action) {
   switch (action.type) {
     case "setWeather":
-      //TODO: json 호출 후 날씨별 filtering
-
+      //json 호출 후 날씨별 filtering
       let res = {};
 
       for (const [key, value] of Object.entries(dataJson)) {
@@ -65,9 +63,7 @@ function DataProvider(props, children) {
     <DataContext.Provider
       value={{ weather: state.user, data: state.data, setWeather }}
       {...props}
-    >
-      {/* <div>{state}</div> */}
-    </DataContext.Provider>
+    />
   );
 }
 
