@@ -2,28 +2,52 @@ body {
   border: 1px solid red;
 }
 .container {
-  margin-left: 37px;
+  margin: 0 30px;
 }
-.title-container > h1 {
+
+.container--title {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.container--title > h1 {
   display: inline;
   font-size: 23px;
 }
-.btn-info {
+
+.btn--info {
+  margin: 0 10px;
+  color: #32499c;
   font-size: 22px;
 }
+.btn--more {
+  position: absolute;
+  right: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+}
 
-.btn-row {
+.container--btn {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
-  width: 100%;
-  margin: 0 auto;
   border-top: 1px solid #e3e3e3;
   border-bottom: 1px solid #e3e3e3;
 }
 
-.btn-row > button {
+.btn--row {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.btn--row02 {
+  margin-bottom: 8px;
+}
+
+.container--btn button {
   width: 62px;
-  margin: 8px 0 8px 8px;
+  margin-right: 8px;
   border: none;
   border-radius: 100px;
   outline: none;
@@ -31,9 +55,32 @@ body {
   color: white;
   font-weight: bold;
 }
-.btn-row > .btn-route {
+.container--btn .btn--route {
   width: 83px;
 }
-.btn-row > .btn-experience {
+.container--btn .btn--experience {
   width: 96px;
+}
+
+/* 추천 관광지 리스트  */
+.container--place {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.row {
+  display: flex;
+  margin-top: 24px;
+}
+.container--place img {
+  width: 76px;
+  height: 76px;
+  margin-right: 20px;
+}
+.title {
+  font-size: 16px;
+  font-weight: bold;
+}
+.content {
+  font-size: 13px;
 }
