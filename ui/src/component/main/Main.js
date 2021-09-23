@@ -7,14 +7,12 @@ import { DataContext } from "../../DataProvider";
 
 const Main = () => {
   const { data, setWeather } = useContext(DataContext);
-  const [filteredData, setFilteredData] = useState({});
+  const [unselectedCategories, setUnselectedCategories] = useState({});
 
   useEffect(() => {
     if (data) {
       //TODO: 날씨 api 값을 매개변수로 삽입
       setWeather("S");
-      setFilteredData(data);
-      console.log(filteredData);
     }
   }, []);
 
@@ -25,11 +23,38 @@ const Main = () => {
   //   }
 
   function _onClickCategory(e) {
-    if (filteredData.hasOwnProperty(e.target.id)) {
-      filteredData.remove(e.target.id);
+    if (!(e.target.id in unselectedCategories)) {
+      setUnselectedCategories({ ...unselectedCategories, [e.target.id]: true });
+    } else {
+      let state = { ...unselectedCategories };
+      delete state[e.target.id];
+      setUnselectedCategories(state);
     }
-    console.log(filteredData);
+    console.log(unselectedCategories);
   }
+
+  const placeContainer = (e) => {
+    return Object.values(e).map((val) => (
+      <p>
+        {
+          <div className="row">
+            <img
+              src={
+                val["이미지URL"] !== 0
+                  ? val["이미지URL"]
+                  : "http://www.pngmagic.com/product_images/solid-dark-grey-background.jpg"
+              }
+              alt=""
+            />
+            <div className="context">
+              <div className="title">{val["콘텐츠명"]}</div>
+              <div className="content">{val["제목"]}</div>
+            </div>
+          </div>
+        }
+      </p>
+    ));
+  };
 
   return (
     <div className="container">
@@ -41,66 +66,31 @@ const Main = () => {
       <div className="recommand-place">
         <div className="container--title">
           <h1>추천 관광지</h1>
+
           <FontAwesomeIcon icon={faInfoCircle} className="btn--info" />
 
           <button className="btn--more">더보기</button>
         </div>
         <div className="container--btn">
           {Object.keys(data).map((val) => (
-            <button id={val} onClick={_onClickCategory}>
+            <button
+              className={val in unselectedCategories ? "btn--unselected" : ""}
+              id={val}
+              onClick={_onClickCategory}
+            >
               {val}
             </button>
           ))}
-          {/* <div className="btn--row">
-            <button>자연</button>
-            <button>인문</button>
-            <button className="btn--route">추천코스</button>
-            <button>쇼핑</button>
-          </div>
-          <div className="btn--row02">
-            <button>음식</button>
-            <button className="btn--experience">체험관광지</button>
-          </div> */}
         </div>
 
         {/* 밑에있는 리스트 컴포넌트로 변환 해야함 */}
+
         <div className="container--place">
-          <div className="row">
-            <img
-              src="http://www.pngmagic.com/product_images/solid-dark-grey-background.jpg"
-              alt=""
-            />
-            <div className="context">
-              <div className="title">제목</div>
-              <div className="content">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <img
-              src="http://www.pngmagic.com/product_images/solid-dark-grey-background.jpg"
-              alt=""
-            />
-            <div className="context">
-              <div className="title">제목</div>
-              <div className="content">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <img
-              src="http://www.pngmagic.com/product_images/solid-dark-grey-background.jpg"
-              alt=""
-            />
-            <div className="context">
-              <div className="title">제목</div>
-              <div className="content">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </div>
-            </div>
-          </div>
+          {Object.keys(data).map(
+            (category) =>
+              !(category in unselectedCategories) &&
+              placeContainer(data[category])
+          )}
         </div>
       </div>
     </div>

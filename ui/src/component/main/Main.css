@@ -61,12 +61,16 @@ body {
 .container--btn .btn--experience {
   width: 96px;
 }
+.container--btn .btn--unselected {
+  background: grey;
+}
 
 /* 추천 관광지 리스트  */
 .container--place {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: scroll;
 }
 .row {
   display: flex;
