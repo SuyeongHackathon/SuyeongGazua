@@ -1,0 +1,17 @@
+.mySwiper {
+  width: 313px;
+  height: 34px;
+  /* background-color: white; */
+  margin-top: 8px;
+}
+
+.slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  line-height: 18.75px;
+  font-weight: 400;
+  color: white;
+  cursor: pointer;
+}

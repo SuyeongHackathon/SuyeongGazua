@@ -1,21 +1,52 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import "./Recommend.css";
+import { DataContext } from "../../DataProvider";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
 
 const Recommend = () => {
+  const { data, setWeather } = useContext(DataContext);
+  const [unselectedCategories, setUnselectedCategories] = useState({});
+
+  useEffect(() => {
+    if (data) {
+      //TODO: 날씨 api 값을 매개변수로 삽입
+      setWeather("S");
+    }
+  }, []);
+
+  function _onClickCategory(e) {
+    if (!(e.target.id in unselectedCategories)) {
+      setUnselectedCategories({ ...unselectedCategories, [e.target.id]: true });
+    } else {
+      let state = { ...unselectedCategories };
+      delete state[e.target.id];
+      setUnselectedCategories(state);
+    }
+    console.log(unselectedCategories);
+  }
+
   return (
     <>
       <WholeBox>
         <RecommendBox>
           <RecommendTitle>추천 관광지</RecommendTitle>
           <Line />
-          <CategoryBox>
-            <Category>자연</Category>
-            <Category>인문</Category>
-            <Category style={{ width: "65px" }}>추천코스</Category>
-            <Category style={{ width: "80px" }}>체험관광지</Category>
-            <Category>쇼핑</Category>
-            <Category>음식</Category>
-          </CategoryBox>
+          <Swiper spaceBetween={10} slidesPerView={4} className="mySwiper">
+            {Object.keys(data).map((val) => (
+              <SwiperSlide
+                className={`slider ${
+                  val in unselectedCategories ? "btn--unselected" : ""
+                }`}
+                id={val}
+                onClick={_onClickCategory}
+              >
+                {val}
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
           <Line />
           <FilterCategoryBox>
             <FilterCategory>가족코스</FilterCategory>
@@ -35,7 +66,7 @@ const WholeBox = styled.div`
 
 const RecommendBox = styled.div`
   width: 100%;
-  height: 30vh;
+  height: 250px;
   background-color: #32499c;
 `;
 
@@ -55,27 +86,6 @@ const Line = styled.div`
   margin-top: 7px;
 `;
 
-const CategoryBox = styled.div`
-  width: 313px;
-  height: 34px;
-  /* background-color: white; */
-  margin-left: 21px;
-  margin-top: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Category = styled.div`
-  width: 33px;
-  height: 19px;
-  font-size: 16px;
-  line-height: 18.75px;
-  font-weight: 400;
-  padding-left: 6px;
-  color: white;
-`;
-
 const FilterCategoryBox = styled.div`
   width: 300px;
   height: 50px;
@@ -93,7 +103,7 @@ const FilterCategory = styled.div`
 
 const ContainerBox = styled.div`
   width: 100%;
-  height: 70vh;
+  height: calc(812px - 250px);
   background-color: yellow;
 `;
 
