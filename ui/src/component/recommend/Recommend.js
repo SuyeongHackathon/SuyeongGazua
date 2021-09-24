@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import "./Recommend.css";
 import { DataContext } from "../../DataProvider";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, Pagination } from "swiper/react";
 import "swiper/swiper-bundle.css";
 
 const Recommend = () => {
   const { data, setWeather } = useContext(DataContext);
-  const [firstCategory, setFirstCategory] = useState([]);
+  const [selectedCateogry, setSelectedCateogry] = useState(0);
 
   useEffect(() => {
     if (data) {
@@ -16,11 +16,14 @@ const Recommend = () => {
     }
   }, []);
 
-  function onClickfirstCategory(idx) {
-    const newArr = Array(data.length).fill(false);
-    newArr[idx] = true;
-    setFirstCategory(newArr);
-    console.log(newArr);
+  function place2ndCategory(e) {
+    if (e[0]["세부카테고리"] === 0) {
+      return null;
+    }
+    let set = new Set();
+    Object.values(e).forEach((e) => set.add(e["세부카테고리"]));
+
+    return [...set].map((val) => <FilterCategory>{val}</FilterCategory>);
   }
 
   return (
@@ -29,14 +32,19 @@ const Recommend = () => {
         <RecommendBox>
           <RecommendTitle>추천 관광지</RecommendTitle>
           <Line />
-          <Swiper spaceBetween={10} slidesPerView={4} className="mySwiper">
+          <Swiper
+            spaceBetween={10}
+            slidesPerView={4}
+            pagination={{ clickable: true }}
+            className="mySwiper"
+          >
             {Object.keys(data).map((val, idx) => (
               <SwiperSlide
                 className={`slider ${
-                  idx in firstCategory && "first-category--selected"
+                  selectedCateogry === idx && "first-category--selected"
                 }`}
-                id={val}
-                onClick={() => onClickfirstCategory(idx)}
+                id={idx}
+                onClick={() => setSelectedCateogry(idx)}
               >
                 {val}
               </SwiperSlide>
@@ -45,7 +53,11 @@ const Recommend = () => {
 
           <Line />
           <FilterCategoryBox>
-            <FilterCategory>가족코스</FilterCategory>
+            {Object.keys(data).map((category, idx) => (
+              <>
+                {idx === selectedCateogry && place2ndCategory(data[category])}
+              </>
+            ))}
           </FilterCategoryBox>
         </RecommendBox>
         <ContainerBox></ContainerBox>
@@ -84,16 +96,19 @@ const Line = styled.div`
 const FilterCategoryBox = styled.div`
   width: 300px;
   height: 50px;
-  background-color: white;
   margin-left: 21px;
   margin-top: 20px;
 `;
 
 const FilterCategory = styled.div`
-  width: 77px;
+  display: inline-block;
   height: 19px;
+  margin: 8px;
+  padding: 0 10px;
   border-radius: 100px;
   background-color: #e9a945;
+  text-align: center;
+  cursor: pointer;
 `;
 
 const ContainerBox = styled.div`
