@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { DataContext } from "../../DataProvider";
 
-const Main = () => {
+const Main = ({ history }) => {
   const { data, setWeather } = useContext(DataContext);
   const [unselectedCategories, setUnselectedCategories] = useState({});
   const [modal, setModal] = useState(false);
@@ -65,7 +65,7 @@ const Main = () => {
       {/* 홍 */}
       {/* 추천 관광지 */}
 
-      <div className="recommand-place">
+      <div className="recommend-place">
         <div className="container--title">
           <h1>추천 관광지</h1>
 
@@ -75,7 +75,12 @@ const Main = () => {
             onClick={() => setModal(!modal)}
           />
 
-          <button className="btn--more">더보기</button>
+          <button
+            className="btn--more"
+            onClick={() => history.push("/recommend")}
+          >
+            더보기
+          </button>
         </div>
 
         {modal && (
