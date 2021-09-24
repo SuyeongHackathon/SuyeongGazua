@@ -1,3 +1,14 @@
+@font-face {
+  font-family: "NEXON Lv1 Gothic OTF";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  font-family: "NEXON Lv1 Gothic OTF", sans-serif;
+}
+
 body {
   border: 1px solid red;
 }
@@ -16,6 +27,8 @@ body {
 
 .recommend-place {
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .container--title {
@@ -45,18 +58,35 @@ body {
 
 .modal {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   position: absolute;
   top: 130px;
-  width: 310px;
-  height: 200px;
+  /* position:absolute 일 때 center 맞추기 */
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  /*  */
+  width: 250px;
+  height: 210px;
   border-radius: 20px;
-  background-color: rgba(196, 196, 196, 0.8);
+  background-color: rgba(196, 196, 196, 0.9);
 }
-
 .modal > p {
-  font-size: 23px;
+  font-size: 18px;
   font-weight: bold;
+}
+.exit--btn {
+  width: 50px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #32499c;
+  font-size: 16px;
+  font-weight: bolder;
+  cursor: pointer;
 }
 
 .container--btn {

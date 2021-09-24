@@ -92,6 +92,9 @@ const Main = ({ history }) => {
               <br />
               더보기 버튼을 누르면 <br />더 많은 장소가 보입니다.
             </p>
+            <button className="exit--btn" onClick={() => setModal(false)}>
+              닫기
+            </button>
           </div>
         )}
 
