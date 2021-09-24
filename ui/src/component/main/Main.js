@@ -8,6 +8,7 @@ import { DataContext } from "../../DataProvider";
 const Main = () => {
   const { data, setWeather } = useContext(DataContext);
   const [unselectedCategories, setUnselectedCategories] = useState({});
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     if (data) {
@@ -68,10 +69,27 @@ const Main = () => {
         <div className="container--title">
           <h1>추천 관광지</h1>
 
-          <FontAwesomeIcon icon={faInfoCircle} className="btn--info" />
+          <FontAwesomeIcon
+            icon={faInfoCircle}
+            className="btn--info"
+            onClick={() => setModal(!modal)}
+          />
 
           <button className="btn--more">더보기</button>
         </div>
+
+        {modal && (
+          <div className="modal">
+            <p>
+              현재 날씨를 기반으로 <br />
+              관광지를 추천해 드립니다.
+              <br />
+              <br />
+              더보기 버튼을 누르면 <br />더 많은 장소가 보입니다.
+            </p>
+          </div>
+        )}
+
         <div className="container--btn">
           {Object.keys(data).map((val) => (
             <button
