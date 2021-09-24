@@ -5,6 +5,15 @@ body {
   margin: 0 30px;
 }
 
+.img--title {
+  height: 78px;
+  border: 1px solid purple;
+}
+.weather {
+  height: 250px;
+  border: 1px solid blue;
+}
+
 .container--title {
   position: relative;
   display: flex;
@@ -36,30 +45,16 @@ body {
   border-bottom: 1px solid #e3e3e3;
 }
 
-.btn--row {
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.btn--row02 {
-  margin-bottom: 8px;
-}
-
 .container--btn button {
-  width: 62px;
-  margin-right: 8px;
+  display: inline-block;
+  margin: 4px;
   border: none;
   border-radius: 100px;
   outline: none;
   background: #e9a945;
   color: white;
   font-weight: bold;
-}
-.container--btn .btn--route {
-  width: 83px;
-}
-.container--btn .btn--experience {
-  width: 96px;
+  cursor: pointer;
 }
 .container--btn .btn--unselected {
   background: grey;
@@ -70,8 +65,27 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow: scroll;
+  height: calc(812px - 480px);
+  overflow-y: scroll;
 }
+
+/* 스크롤바 설정*/
+.container--place::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* 스크롤바 막대 설정*/
+.container--place::-webkit-scrollbar-thumb {
+  height: 17%;
+  background-color: #32499c;
+  border-radius: 10px;
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.container--place::-webkit-scrollbar-track {
+  background-color: #32499c7a;
+}
+
 .row {
   display: flex;
   margin-top: 24px;

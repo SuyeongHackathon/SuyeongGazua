@@ -58,8 +58,9 @@ const Main = () => {
 
   return (
     <div className="container">
+      <div className="img--title">수영간데이 타이틀 넣는 곳</div>
       {/* 찐 */}
-
+      <div className="weather">날씨 알려주는 곳</div>
       {/* 홍 */}
       {/* 추천 관광지 */}
 
@@ -82,8 +83,6 @@ const Main = () => {
             </button>
           ))}
         </div>
-
-        {/* 밑에있는 리스트 컴포넌트로 변환 해야함 */}
 
         <div className="container--place">
           {Object.keys(data).map(
