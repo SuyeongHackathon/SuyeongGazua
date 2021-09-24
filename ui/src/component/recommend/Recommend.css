@@ -15,3 +15,7 @@
   color: white;
   cursor: pointer;
 }
+
+.first-category--selected {
+  color: red;
+}

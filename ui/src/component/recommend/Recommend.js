@@ -7,7 +7,7 @@ import "swiper/swiper-bundle.css";
 
 const Recommend = () => {
   const { data, setWeather } = useContext(DataContext);
-  const [unselectedCategories, setUnselectedCategories] = useState({});
+  const [firstCategory, setFirstCategory] = useState([]);
 
   useEffect(() => {
     if (data) {
@@ -16,15 +16,11 @@ const Recommend = () => {
     }
   }, []);
 
-  function _onClickCategory(e) {
-    if (!(e.target.id in unselectedCategories)) {
-      setUnselectedCategories({ ...unselectedCategories, [e.target.id]: true });
-    } else {
-      let state = { ...unselectedCategories };
-      delete state[e.target.id];
-      setUnselectedCategories(state);
-    }
-    console.log(unselectedCategories);
+  function onClickfirstCategory(idx) {
+    const newArr = Array(data.length).fill(false);
+    newArr[idx] = true;
+    setFirstCategory(newArr);
+    console.log(newArr);
   }
 
   return (
@@ -34,13 +30,13 @@ const Recommend = () => {
           <RecommendTitle>추천 관광지</RecommendTitle>
           <Line />
           <Swiper spaceBetween={10} slidesPerView={4} className="mySwiper">
-            {Object.keys(data).map((val) => (
+            {Object.keys(data).map((val, idx) => (
               <SwiperSlide
                 className={`slider ${
-                  val in unselectedCategories ? "btn--unselected" : ""
+                  idx in firstCategory && "first-category--selected"
                 }`}
                 id={val}
-                onClick={_onClickCategory}
+                onClick={() => onClickfirstCategory(idx)}
               >
                 {val}
               </SwiperSlide>
@@ -61,7 +57,6 @@ const Recommend = () => {
 const WholeBox = styled.div`
   width: 100%;
   height: 100%;
-  background-color: blue;
 `;
 
 const RecommendBox = styled.div`
@@ -104,7 +99,6 @@ const FilterCategory = styled.div`
 const ContainerBox = styled.div`
   width: 100%;
   height: calc(812px - 250px);
-  background-color: yellow;
 `;
 
 export default Recommend;
