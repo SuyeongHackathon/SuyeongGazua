@@ -23,7 +23,9 @@ function dataReducer(state, action) {
 
       for (const [key, value] of Object.entries(dataJson)) {
         let tempArray = Object.values(value).filter(
-          (e) => e["필터"] === action.payload || "B"
+          (e) =>
+            action.payload === "A" ? true :
+            e["필터"] === action.payload || "B"
         );
         res[key] = tempArray.reduce(
           (ac, a, i) => ({

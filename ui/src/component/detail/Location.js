@@ -1,11 +1,11 @@
 /*global kakao*/ 
 import React, { useEffect } from 'react'
 
-const Location=()=>{
+const Location=({address})=>{
 
     const { kakao } = window;
 
-    const address = "부산광역시 금정구 장전동 420-47번지 근영테크빌 601호";
+    console.log(address)
 
     const FindLatLng = ()=>{
         const container = document.getElementById('map');

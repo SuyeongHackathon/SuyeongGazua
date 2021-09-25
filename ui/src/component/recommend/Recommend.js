@@ -5,17 +5,28 @@ import { DataContext } from "../../DataProvider";
 import { Swiper, SwiperSlide, Pagination } from "swiper/react";
 import "swiper/swiper-bundle.css";
 
-const Recommend = () => {
+const Recommend = ({history}) => {
   const { data, setWeather } = useContext(DataContext);
-  const [selectedCateogry, setSelectedCateogry] = useState(0);
-  const [lists, setLists] = useState([]);
+  const [selectedCateogry, setSelectedCateogry] = useState('관광명소');
+  const [unselected2ndCategories, setUnselected2ndCategories] = useState({});
 
   useEffect(() => {
     if (data) {
-      //TODO: 날씨 api 값을 매개변수로 삽입
-      setWeather("S");
+      //모든 관광지를 불러옴
+      setWeather("A");
     }
   }, []);
+  function onClick2ndCateogry(e) {
+     if (!(e.target.id in unselected2ndCategories)) {
+      setUnselected2ndCategories({ ...unselected2ndCategories, [e.target.id]: true });
+    } else {
+      let state = { ...unselected2ndCategories };
+      delete state[e.target.id];
+      setUnselected2ndCategories(state);
+    }
+    console.log(unselected2ndCategories);
+  }
+
 
   function place2ndCategory(e) {
     if (e[0]["세부카테고리"] === 0) {
@@ -25,15 +36,22 @@ const Recommend = () => {
     Object.values(e).forEach((e) => set.add(e["세부카테고리"]));
 
     return [...set].map((val) => (
-      <FilterCategory onClick={() => setLists([...lists, val])}>
+      
+      <FilterCategory
+        unselected = {val in unselected2ndCategories}
+        id={val} onClick={onClick2ndCateogry}>
         {val}
-      </FilterCategory>
+      </FilterCategory> 
     ));
   }
 
   function placeContainer(e) {
-    return Object.values(e).map((val) => (
-      <p>
+    return Object.values(e).map((val, index) => (
+      val['세부카테고리'] in unselected2ndCategories ? null :
+      <p onClick={()=>history.push({
+            pathname: "/detail",
+            state:{category:selectedCateogry, index:index}
+          })}>
         {
           <div className="row">
             <img
@@ -71,10 +89,10 @@ const Recommend = () => {
             {Object.keys(data).map((val, idx) => (
               <SwiperSlide
                 className={`slider ${
-                  selectedCateogry === idx && "first-category--selected"
+                  selectedCateogry === val && "first-category--selected"
                 }`}
-                id={idx}
-                onClick={() => setSelectedCateogry(idx)}
+                id={val}
+                onClick={() => setSelectedCateogry(val)}
               >
                 {val}
               </SwiperSlide>
@@ -85,14 +103,15 @@ const Recommend = () => {
           <FilterCategoryBox>
             {Object.keys(data).map((category, idx) => (
               <>
-                {idx === selectedCateogry && place2ndCategory(data[category])}
+                {category === selectedCateogry && place2ndCategory(data[category])}
               </>
             ))}
           </FilterCategoryBox>
         </RecommendBox>
-        <ContainerBox>
-          {Object.keys(data).map((category) => placeContainer(data[category]))}
+<ContainerBox>
+        {placeContainer(data[selectedCateogry])}
         </ContainerBox>
+       
       </WholeBox>
     </>
   );
@@ -138,7 +157,7 @@ const FilterCategory = styled.div`
   margin: 8px;
   padding: 0 10px;
   border-radius: 100px;
-  background-color: #e9a945;
+  background-color: ${props=>props.unselected ? '#7C7B7B' : '#e9a945'};
   text-align: center;
   cursor: pointer;
 `;
@@ -146,6 +165,7 @@ const FilterCategory = styled.div`
 const ContainerBox = styled.div`
   width: 100%;
   height: calc(812px - 250px);
+  overflow : scroll;
 `;
 
 export default Recommend;
