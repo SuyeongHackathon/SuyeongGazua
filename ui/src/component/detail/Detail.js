@@ -1,15 +1,21 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import styled from 'styled-components';
 import title from '../../img/title.png';
 import gwangalli from '../../img/gwangalli.png';
 import Location from './Location';
+import { DataContext } from "../../DataProvider";
 
-const Detail = () =>{
-
-    return(
+const Detail = (props, {history}) =>{
+    const category = props.location.state.category;
+    const index = props.location.state.index;
+    const { data, setWeather } = useContext(DataContext);
+    let content = data[category][index];
+    const exceptFieldList = ["필터", '세부카테고리', '이미지URL'];
+    console.log(content['이미지URL'])
+    return (
+        
         <>
             <Container>
-
                 <Title>
                     <WaveImg src={title}/>
                     <div style={{
@@ -19,51 +25,24 @@ const Detail = () =>{
                         margin: "2vh",
                         fontWeight: "bold",
                         fontSize: "30px"
-                    }}>수영간데이 카페</div>
+                    }}>{content['콘텐츠명']}</div>
                 </Title>
 
-                <ImgContent>
-                    <Img src={gwangalli}/>
-                </ImgContent>
+                {content['이미지URL'] !== "0" || content['이미지URL'] !== null &&
+                    (<ImgContent>
+                        <Img src={content['이미지URL']} />
+                    </ImgContent>)}
                         
                 <Content>
                     <Flexbox>
-                        <Contents>
-                            <ContetnsTitle>문의 및 안내 : </ContetnsTitle>
-                            <DataContents>  051-610-4951</DataContents>
+                        {Object.entries(content).map((e) => (
+                        exceptFieldList.includes(e[0]) || e[1]=="" ? null :
+                              <Contents>
+                            <ContetnsTitle>{`${e[0]} : `}</ContetnsTitle>
+                                <DataContents>{`  ${e[1]}`}</DataContents>
                         </Contents>
-                        <Contents>
-                            <ContetnsTitle>체험안내 : </ContetnsTitle>
-                            <DataContents>  SUP(Stand Up Paddle Board)</DataContents>
-                        </Contents>
-                        <Contents>
-                            <ContetnsTitle>수용인원 : </ContetnsTitle>
-                            <DataContents>  300명</DataContents>
-                        </Contents>
-                        <Contents>
-                            <ContetnsTitle>이용시간 : </ContetnsTitle>
-                            <DataContents>  일몰 전 30분 ~ 일몰 후 30분까지</DataContents>
-                        </Contents>
-                        <Contents>
-                            <ContetnsTitle>SUP Zone 이용시간 : </ContetnsTitle>
-                            <DataContents>  24시간</DataContents>
-                        </Contents>
-                        <Contents>
-                            <ContetnsTitle>주차시설 : </ContetnsTitle>
-                            <DataContents>  없음(수영구청 주차장 이용)</DataContents>
-                        </Contents>
-                        <Contents>
-                            <ContetnsTitle>유모차 대여 여부 : </ContetnsTitle>
-                            <DataContents>  없음</DataContents>
-                        </Contents>
-                        <Contents>
-                            <ContetnsTitle>반려동물 동반 기능 여부 : </ContetnsTitle>
-                            <DataContents>  가능</DataContents>
-                        </Contents>
-                        <Contents>
-                            <ContetnsTitle>신용카드 가능 여부 : </ContetnsTitle>
-                            <DataContents>  없음</DataContents>
-                        </Contents>
+                        ))
+                        }
                         
                     </Flexbox>
                 </Content>
@@ -121,6 +100,7 @@ const Content = styled.div`
     display: flex;
     justify-content: center;
     align-items:center;
+    padding: 0 20px;
 `;
 
 const Flexbox = styled.div`
@@ -129,21 +109,17 @@ const Flexbox = styled.div`
 `;
 
 const Contents = styled.div`
+    word-break: break-all;
     width: 100%;
-    height: 3.8vh;
-    display: flex;
-    justify-content: flex-start;
-    align-items:center;
-    //padding-left: 10px;
-    margin: 0 20px;
+    padding : 8px 0;
 `;
-const ContetnsTitle = styled.div`
+const ContetnsTitle = styled.span`
     // font-size: 4.5vw;
     font-weight: bold;
 `;
 
 // 데이터 받은 것
-const DataContents = styled.div`
+const DataContents = styled.span`
     // font-size: 3.5vw;
     
 `;

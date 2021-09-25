@@ -38,11 +38,14 @@ const Main = ({ history }) => {
     console.log(unselectedCategories);
   }
 
-  const placeContainer = (e) => {
-    return Object.values(e).map((val) => (
+  const placeContainer = (e, category) => {
+    return Object.values(e).map((val, index) => (
       <p>
         {
-          <div className="row">
+          <div className="row" onClick={() => history.push({
+            pathname: "/detail",
+            state:{category:category, index:index}
+          })}>
             <img
               src={
                 val["이미지URL"] !== 0
@@ -131,7 +134,7 @@ const Main = ({ history }) => {
           {Object.keys(data).map(
             (category) =>
               !(category in unselectedCategories) &&
-              placeContainer(data[category])
+              placeContainer(data[category], category)
           )}
         </div>
       </div>
