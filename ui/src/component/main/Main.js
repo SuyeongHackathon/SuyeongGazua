@@ -6,11 +6,9 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { DataContext } from "../../DataProvider";
 import Weather from "../main/Weather";
 import title from "../../img/suyeongtitle.png";
-import titlebackground from "../../img/maintitle.png"
+import titlebackground from "../../img/maintitle.png";
 
-
-const Main = (props, { history }) => {
-
+const Main = ({ history }) => {
   const { data, setWeather } = useContext(DataContext);
   const [unselectedCategories, setUnselectedCategories] = useState({});
   const [modal, setModal] = useState(false);
@@ -18,11 +16,10 @@ const Main = (props, { history }) => {
   useEffect(() => {
     if (data) {
       //TODO: 날씨 api 값을 매개변수로 삽입
-      setWeather("S");  //S: 맑음
-      //setWeather("W");  //W: 흐림 
+      setWeather("S"); //S: 맑음
+      //setWeather("W");  //W: 흐림
     }
   }, []);
-
 
   //   function reload(weather) {
   //     //날씨 API 로딩 완료 후 해당 함수 호출
@@ -45,10 +42,15 @@ const Main = (props, { history }) => {
     return Object.values(e).map((val, index) => (
       <p>
         {
-          <div className="row" onClick={() => history.push({
-            pathname: "/detail",
-            state: { category: category, index: index }
-          })}>
+          <div
+            className="row"
+            onClick={() =>
+              history.push({
+                pathname: "/detail",
+                state: { category: category, index: index },
+              })
+            }
+          >
             <img
               src={
                 val["이미지URL"] !== 0
