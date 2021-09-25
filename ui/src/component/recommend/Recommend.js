@@ -75,7 +75,7 @@ const Recommend = ({history}) => {
   function displayLists() {}
 
   return (
-    <>
+    
       <WholeBox>
         <RecommendBox>
           <RecommendTitle>추천 관광지</RecommendTitle>
@@ -102,9 +102,9 @@ const Recommend = ({history}) => {
           <Line />
           <FilterCategoryBox>
             {Object.keys(data).map((category, idx) => (
-              <>
+              <div>
                 {category === selectedCateogry && place2ndCategory(data[category])}
-              </>
+              </div>
             ))}
           </FilterCategoryBox>
         </RecommendBox>
@@ -113,7 +113,7 @@ const Recommend = ({history}) => {
         </ContainerBox>
        
       </WholeBox>
-    </>
+    
   );
 };
 

@@ -9,7 +9,7 @@ import title from "../../img/suyeongtitle.png";
 import titlebackground from "../../img/maintitle.png"
 
 
-const Main = (props, { history }) => {
+const Main = ( { history }) => {
 
   const { data, setWeather } = useContext(DataContext);
   const [unselectedCategories, setUnselectedCategories] = useState({});

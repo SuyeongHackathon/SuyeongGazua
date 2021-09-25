@@ -14,7 +14,7 @@ const Detail = (props, { history }) => {
     console.log(content['이미지URL'])
     return (
 
-        <>
+        
             <Container>
                 <Title>
                     <WaveImg src={title} />
@@ -59,13 +59,13 @@ const Detail = (props, { history }) => {
                 </LocationTitle>
 
                 <LocationContainer>
-                    <Location address={content['주소']} />
+                    {/* <Location address={content['주소']} /> */}
                 </LocationContainer >
 
 
             </Container >
 
-        </>
+        
     )
 
 }

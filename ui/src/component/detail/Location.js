@@ -38,9 +38,9 @@ const Location=({address})=>{
     }, []);
 
     return (
-        <>
+        
             <div id='map' style={{width: '80vw',height: '30vh'}}></div>
-        </>
+        
     );
 }
 
