@@ -116,7 +116,6 @@ body {
 .container--place {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   height: calc(812px - 480px);
   overflow-y: scroll;
 }
@@ -143,8 +142,8 @@ body {
   margin-top: 24px;
 }
 .container--place img {
-  width: 76px;
-  height: 76px;
+  width: 70px;
+  height: 70px;
   margin-right: 20px;
 }
 .title {

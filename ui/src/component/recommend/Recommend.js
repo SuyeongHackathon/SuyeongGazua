@@ -8,6 +8,7 @@ import "swiper/swiper-bundle.css";
 const Recommend = () => {
   const { data, setWeather } = useContext(DataContext);
   const [selectedCateogry, setSelectedCateogry] = useState(0);
+  const [lists, setLists] = useState([]);
 
   useEffect(() => {
     if (data) {
@@ -23,8 +24,37 @@ const Recommend = () => {
     let set = new Set();
     Object.values(e).forEach((e) => set.add(e["세부카테고리"]));
 
-    return [...set].map((val) => <FilterCategory>{val}</FilterCategory>);
+    return [...set].map((val) => (
+      <FilterCategory onClick={() => setLists([...lists, val])}>
+        {val}
+      </FilterCategory>
+    ));
   }
+
+  function placeContainer(e) {
+    return Object.values(e).map((val) => (
+      <p>
+        {
+          <div className="row">
+            <img
+              src={
+                val["이미지URL"] !== 0
+                  ? val["이미지URL"]
+                  : "http://www.pngmagic.com/product_images/solid-dark-grey-background.jpg"
+              }
+              alt=""
+            />
+            <div className="context">
+              <div className="title">{val["콘텐츠명"]}</div>
+              <div className="content">{val["제목"]}</div>
+            </div>
+          </div>
+        }
+      </p>
+    ));
+  }
+
+  function displayLists() {}
 
   return (
     <>
@@ -60,7 +90,9 @@ const Recommend = () => {
             ))}
           </FilterCategoryBox>
         </RecommendBox>
-        <ContainerBox></ContainerBox>
+        <ContainerBox>
+          {Object.keys(data).map((category) => placeContainer(data[category]))}
+        </ContainerBox>
       </WholeBox>
     </>
   );
