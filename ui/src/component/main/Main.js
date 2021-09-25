@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-
+import axios from "axios";
 import "./Main.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +9,8 @@ import title from "../../img/suyeongtitle.png";
 import titlebackground from "../../img/maintitle.png"
 
 
-const Main = ({ history }) => {
+const Main = (props, { history }) => {
+
   const { data, setWeather } = useContext(DataContext);
   const [unselectedCategories, setUnselectedCategories] = useState({});
   const [modal, setModal] = useState(false);
@@ -17,9 +18,11 @@ const Main = ({ history }) => {
   useEffect(() => {
     if (data) {
       //TODO: 날씨 api 값을 매개변수로 삽입
-      setWeather("S");
+      setWeather("S");  //S: 맑음
+      //setWeather("W");  //W: 흐림 
     }
   }, []);
+
 
   //   function reload(weather) {
   //     //날씨 API 로딩 완료 후 해당 함수 호출
@@ -44,7 +47,7 @@ const Main = ({ history }) => {
         {
           <div className="row" onClick={() => history.push({
             pathname: "/detail",
-            state:{category:category, index:index}
+            state: { category: category, index: index }
           })}>
             <img
               src={
@@ -66,7 +69,6 @@ const Main = ({ history }) => {
 
   return (
     <div className="container">
-
       <div className="titleWave">
         <img className="titleBG" src={titlebackground} alt="title" />
         <img className="mainTitle" src={title} alt="title" />
@@ -78,7 +80,8 @@ const Main = ({ history }) => {
           <h1>날씨</h1>
         </div>
         <div className="weatherContainer">
-          <Weather />
+          {/* <Weather temp={temp} desc={desc} icon={icon} temp_max={temp_max} temp_min={temp_min} feels_like={feels_like} humidity={humidity} wind_speed={wind_speed} /> */}
+          {<Weather />}
         </div>
       </div>
 

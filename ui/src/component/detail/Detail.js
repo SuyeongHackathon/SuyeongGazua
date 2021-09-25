@@ -1,11 +1,11 @@
-import React,{useContext} from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import title from '../../img/title.png';
 import gwangalli from '../../img/gwangalli.png';
 import Location from './Location';
 import { DataContext } from "../../DataProvider";
 
-const Detail = (props, {history}) =>{
+const Detail = (props, { history }) => {
     const category = props.location.state.category;
     const index = props.location.state.index;
     const { data, setWeather } = useContext(DataContext);
@@ -13,13 +13,13 @@ const Detail = (props, {history}) =>{
     const exceptFieldList = ["필터", '세부카테고리', '이미지URL'];
     console.log(content['이미지URL'])
     return (
-        
+
         <>
             <Container>
                 <Title>
-                    <WaveImg src={title}/>
+                    <WaveImg src={title} />
                     <div style={{
-                        position: "absolute", 
+                        position: "absolute",
                         top: "0",
                         color: "white",
                         margin: "2vh",
@@ -32,31 +32,31 @@ const Detail = (props, {history}) =>{
                     (<ImgContent>
                         <Img src={content['이미지URL']} />
                     </ImgContent>)}
-                        
+
                 <Content>
                     <Flexbox>
                         {Object.entries(content).map((e) => (
-                        exceptFieldList.includes(e[0]) || e[1]=="" ? null :
-                              <Contents>
-                            <ContetnsTitle>{`${e[0]} : `}</ContetnsTitle>
-                                <DataContents>{`  ${e[1]}`}</DataContents>
-                        </Contents>
+                            exceptFieldList.includes(e[0]) || e[1] == "" ? null :
+                                <Contents>
+                                    <ContetnsTitle>{`${e[0]} : `}</ContetnsTitle>
+                                    <DataContents>{`  ${e[1]}`}</DataContents>
+                                </Contents>
                         ))
                         }
-                        
+
                     </Flexbox>
                 </Content>
-                
+
                 <LocationTitle>
                     <div style={{
-                        position: "absolute", 
+                        position: "absolute",
                         fontWeight: "bold",
                         fontSize: "25px"
                     }}>위치</div>
                 </LocationTitle>
 
                 <LocationContainer>
-                    <Location/>
+                    <Location />
                 </LocationContainer>
 
 

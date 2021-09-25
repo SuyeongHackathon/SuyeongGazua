@@ -10,7 +10,7 @@ const initialState = {
 const DataContext = createContext({
   weather: "B",
   data: {},
-  setWeather: () => {},
+  setWeather: () => { },
 });
 
 //==============================================================================//
@@ -33,7 +33,7 @@ function dataReducer(state, action) {
           {}
         );
       }
-      console.log(res);
+      // console.log(res);
 
       // dataJson.forEach((key, value) => console.log(key));
 
