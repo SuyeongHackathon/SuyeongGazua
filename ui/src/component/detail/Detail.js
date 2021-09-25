@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import title from '../../img/title.png';
-import gwangalli from '../../img/gwangalli.png';
-import Location from './Location';
+import React, { useContext } from "react";
+import styled from "styled-components";
+import title from "../../img/title.png";
+import gwangalli from "../../img/gwangalli.png";
+import Location from "./Location";
 import { DataContext } from "../../DataProvider";
 
 const Detail = (props, { history }) => {
@@ -59,7 +59,7 @@ const Detail = (props, { history }) => {
                 </LocationTitle>
 
                 <LocationContainer>
-                    {/* <Location address={content['주소']} /> */}
+                    <Location address={content['주소']} />
                 </LocationContainer >
 
 
@@ -71,78 +71,73 @@ const Detail = (props, { history }) => {
 }
 
 const Container = styled.div`
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 `;
 
 const Title = styled.div`
-    width: 100%;
-    height: 13vh;
-    background-color:white;
+  width: 100%;
+  height: 13vh;
+  background-color: white;
 `;
 const WaveImg = styled.img`
-    width: 100%;
-    height: 13vh;
+  width: 100%;
+  height: 13vh;
 `;
 
 const ImgContent = styled.div`
-    height: 15vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 20px;
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
 `;
 const Img = styled.img`
-    width: 80vw;
-    height: 12vh;
+  width: 200px;
+  height: 100px;
 `;
-
 
 const Content = styled.div`
-    height: 46vh;
-    display: flex;
-    justify-content: center;
-    align-items:center;
-    padding: 0 20px;
-    overflow : scroll;
+  height: 46vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  overflow: scroll;
 `;
 
-
 const Flexbox = styled.div`
-    width: 75vw;
-    height: 100%;
-    
+  width: 75vw;
+  height: 100%;
 `;
 
 const Contents = styled.div`
-    word-break: break-all;
-    width: 100%;
-    padding : 8px 0;
+  word-break: break-all;
+  width: 100%;
+  padding: 8px 0;
 `;
 const ContetnsTitle = styled.span`
-    // font-size: 4.5vw;
-    font-weight: bold;
-    
+  // font-size: 4.5vw;
+  font-weight: bold;
 `;
 
 // 데이터 받은 것
 const DataContents = styled.span`
-    // font-size: 3.5vw;
-    
+  // font-size: 3.5vw;
 `;
 
 const LocationTitle = styled.div`
-    height: 5vh;
-    display: flex;
-    justify-content: flex-start;
-    align-items:center;
-    margin: 10px 20px;
+  height: 5vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10px 20px;
 `;
 
 const LocationContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items:center;
-    margin: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 20px;
 `;
 export default Detail;
