@@ -4,6 +4,10 @@ import "./Main.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { DataContext } from "../../DataProvider";
+import Weather from "../main/Weather";
+import title from "../../img/suyeongtitle.png";
+import titlebackground from "../../img/maintitle.png"
+
 
 const Main = ({ history }) => {
   const { data, setWeather } = useContext(DataContext);
@@ -59,9 +63,22 @@ const Main = ({ history }) => {
 
   return (
     <div className="container">
-      <div className="img--title">수영간데이 타이틀 넣는 곳</div>
+
+      <div className="titleWave">
+        <img className="titleBG" src={titlebackground} alt="title" />
+        <img className="mainTitle" src={title} alt="title" />
+      </div>
+
       {/* 찐 */}
-      <div className="weather">날씨 알려주는 곳</div>
+      <div className="weather">
+        <div className="container--title">
+          <h1>날씨</h1>
+        </div>
+        <div className="weatherContainer">
+          <Weather />
+        </div>
+      </div>
+
       {/* 홍 */}
       {/* 추천 관광지 */}
 
