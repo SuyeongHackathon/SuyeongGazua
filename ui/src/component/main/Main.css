@@ -16,14 +16,123 @@ body {
   margin: 0 30px;
 }
 
+/* Main.css */ 
+
+/* 찐 */
+.titleBG{
+  /* 여기 넘 어거지.. 다시 수정하기 */
+  width: 363px;
+  margin: 0 0 0 -30px;
+}
+
+.mainTitle{
+  /* 나중에 걍 글꼴 넣기..  */
+  position: absolute;
+  top:0;
+  width: 130px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 82px;
+  
+}
+.weather{
+  margin-bottom: 15px;
+}
+.weatherContainer {
+  display: table;
+  
+}
+.weatherIcon {
+  float: left;
+  display: flex;
+  width: 90px;
+  height: 90px;
+  margin: 20px;
+  /* position: relative; */
+  align-items: center;
+  justify-content: center;
+}
+
+.TempDes {
+  /* float: right; */
+  width: 330px;
+  height: 130px;
+  
+  
+}
+.temperature{
+  display:flex;
+  font-size: 34px;
+  font-weight: bold;
+}
+.unit{
+  font-size: 20px;
+  font-weight: 500;
+  margin: 4px 0 0 3px;
+}
+.description {
+  font-size: 15px;
+  font-weight: bold; 
+}
+.maxMin {
+  display: flex;
+  width: 180px;
+  height: 30px;
+  margin-top: 3px;
+}
+.temp--min {
+  float: left;
+  padding: 5px 7px 0 0;
+  font-size: 13px;
+  font-weight: bold;
+  color: #56A2F8;
+}
+.temp--max {
+  padding: 5px 0;
+  font-size: 13px;
+  font-weight: bold;
+  color: #f36565;
+  width: 38px;
+  height: 22px;
+}
+.feels-like{
+  padding: 5px 0;
+  font-size: 12px;
+  font-weight: bold;
+  color: #949494;
+  margin-top: 2px;
+}
+.under {
+  display: flex;
+  width: 180px;
+  height: 30px;
+}
+.humidity{
+  font-size: 12px;
+  font-weight: bold;
+  width: 80px;
+  height: 22px;
+  color: #686868;
+}
+.windSpeed{
+  font-size: 12px;
+  font-weight: bold;
+  width: 80px;
+  height: 22px;
+  margin-left: -2px;
+  color: #686868;
+}
+
+/**/
+
+
+
 .img--title {
   height: 78px;
   border: 1px solid purple;
 }
-.weather {
-  height: 250px;
-  border: 1px solid blue;
-}
+
 
 .recommend-place {
   position: relative;
