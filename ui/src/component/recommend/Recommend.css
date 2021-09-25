@@ -23,7 +23,7 @@
 .row {
   display: flex;
   margin-top: 24px;
-  margin-left: 29px;
+  /* margin-left: 29px; */
 }
 img {
   width: 76px;

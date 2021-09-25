@@ -86,6 +86,7 @@ const WaveImg = styled.img`
 `;
 
 const ImgContent = styled.div`
+  width: 200px;
   height: 15vh;
   display: flex;
   justify-content: center;
@@ -107,7 +108,7 @@ const Content = styled.div`
 `;
 
 const Flexbox = styled.div`
-  width: 75vw;
+  width: 300px;
   height: 100%;
 `;
 
