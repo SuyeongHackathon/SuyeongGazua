@@ -4,6 +4,7 @@ import "./Recommend.css";
 import { DataContext } from "../../DataProvider";
 import { Swiper, SwiperSlide, Pagination } from "swiper/react";
 import "swiper/swiper-bundle.css";
+import gwangalli from '../../img/gwangalli.png'
 
 const Recommend = () => {
   const { data, setWeather } = useContext(DataContext);
@@ -60,7 +61,56 @@ const Recommend = () => {
             ))}
           </FilterCategoryBox>
         </RecommendBox>
-        <ContainerBox></ContainerBox>
+        <ContainerBox>
+
+          <ContentsBox>
+            <Img src={gwangalli}/>
+            <TitleBox>
+              <Title>수영간데이</Title>
+              <Explanation>asdsadsadsadsadsadsadsadsadsadsadasdadsadsadasdasdasd</Explanation>
+            </TitleBox>
+          </ContentsBox>
+
+          <ContentsBox>
+            <Img src={gwangalli}/>
+            <TitleBox>
+              <Title>수영간데이</Title>
+              <Explanation>asdsadsadsadsadsadsadsadsadsadsadasdadsadsadasdasdasd</Explanation>
+            </TitleBox>
+          </ContentsBox>
+
+          <ContentsBox>
+            <Img src={gwangalli}/>
+            <TitleBox>
+              <Title>수영간데이</Title>
+              <Explanation>asdsadsadsadsadsadsadsadsadsadsadasdadsadsadasdasdasd</Explanation>
+            </TitleBox>
+          </ContentsBox>
+
+          <ContentsBox>
+            <Img src={gwangalli}/>
+            <TitleBox>
+              <Title>수영간데이</Title>
+              <Explanation>asdsadsadsadsadsadsadsadsadsadsadasdadsadsadasdasdasd</Explanation>
+            </TitleBox>
+          </ContentsBox>
+
+          <ContentsBox>
+            <Img src={gwangalli}/>
+            <TitleBox>
+              <Title>수영간데이</Title>
+              <Explanation>asdsadsadsadsadsadsadsadsadsadsadasdadsadsadasdasdasd</Explanation>
+            </TitleBox>
+          </ContentsBox>
+
+          <ContentsBox>
+            <Img src={gwangalli}/>
+            <TitleBox>
+              <Title>수영간데이</Title>
+              <Explanation>asdsadsadsadsadsadsadsadsadsadsadasdadsadsadasdasdasd</Explanation>
+            </TitleBox>
+          </ContentsBox>
+        </ContainerBox>
       </WholeBox>
     </>
   );
@@ -114,6 +164,44 @@ const FilterCategory = styled.div`
 const ContainerBox = styled.div`
   width: 100%;
   height: calc(812px - 250px);
+`;
+
+const ContentsBox = styled.div`
+  width:296px;
+  height: 76px;
+  background-color:white;
+  margin-top: 24px;
+  margin-left: 31px;
+  display: flex;
+`;
+
+const Img = styled.img`
+  width:76px;
+  height:76px;
+`;
+
+const TitleBox = styled.div`
+  width:201px;
+  height:76px;
+  margin-left:20px ;
+`;
+
+const Title = styled.div`
+  width:100%;
+  height:30%;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  margin-top:10px;
+`;
+const Explanation = styled.div`
+  width:100%;
+  height:30px;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  word-break: break-all;
+
 `;
 
 export default Recommend;
