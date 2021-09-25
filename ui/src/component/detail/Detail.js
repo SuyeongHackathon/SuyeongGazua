@@ -24,17 +24,20 @@ const Detail = (props, {history}) =>{
                         color: "white",
                         margin: "2vh",
                         fontWeight: "bold",
-                        fontSize: "30px"
+                        fontSize: "30px",
+                        whiteSpace: "nowrap",
+    
                     }}>{content['콘텐츠명']}</div>
                 </Title>
 
-                {content['이미지URL'] !== "0" || content['이미지URL'] !== null &&
-                    (<ImgContent>
-                        <Img src={content['이미지URL']} />
-                    </ImgContent>)}
+              
                         
                 <Content>
                     <Flexbox>
+                          {content['이미지URL'] !== 0 &&
+                    (<ImgContent>
+                        <Img src={content['이미지URL']} />
+                    </ImgContent>)}
                         {Object.entries(content).map((e) => (
                         exceptFieldList.includes(e[0]) || e[1]=="" ? null :
                               <Contents>
@@ -56,7 +59,7 @@ const Detail = (props, {history}) =>{
                 </LocationTitle>
 
                 <LocationContainer>
-                    <Location/>
+                    <Location address={content['주소']} />
                 </LocationContainer>
 
 
@@ -96,16 +99,19 @@ const Img = styled.img`
 
 
 const Content = styled.div`
-    height: 35vh;
+    height: 46vh;
     display: flex;
     justify-content: center;
     align-items:center;
     padding: 0 20px;
+    overflow : scroll;
 `;
 
+
 const Flexbox = styled.div`
-    width: 80vw;
+    width: 75vw;
     height: 100%;
+    
 `;
 
 const Contents = styled.div`
@@ -116,6 +122,7 @@ const Contents = styled.div`
 const ContetnsTitle = styled.span`
     // font-size: 4.5vw;
     font-weight: bold;
+    
 `;
 
 // 데이터 받은 것
