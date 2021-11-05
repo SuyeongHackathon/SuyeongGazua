@@ -40,7 +40,7 @@ const Main = ({ history }) => {
 
   const placeContainer = (e, category) => {
     return Object.values(e).map((val, index) => (
-      <p>
+      <div key={index}>
         {
           <div
             className="row"
@@ -65,7 +65,7 @@ const Main = ({ history }) => {
             </div>
           </div>
         }
-      </p>
+      </div>
     ));
   };
 
@@ -124,8 +124,9 @@ const Main = ({ history }) => {
         )}
 
         <div className="container--btn">
-          {Object.keys(data).map((val) => (
+          {Object.keys(data).map((val, i) => (
             <button
+              key={i}
               className={val in unselectedCategories ? "btn--unselected" : ""}
               id={val}
               onClick={_onClickCategory}

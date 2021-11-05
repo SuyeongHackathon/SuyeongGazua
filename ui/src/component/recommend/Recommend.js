@@ -5,9 +5,9 @@ import { DataContext } from "../../DataProvider";
 import { Swiper, SwiperSlide, Pagination } from "swiper/react";
 import "swiper/swiper-bundle.css";
 
-const Recommend = ({history}) => {
+const Recommend = ({ history }) => {
   const { data, setWeather } = useContext(DataContext);
-  const [selectedCateogry, setSelectedCateogry] = useState('관광명소');
+  const [selectedCateogry, setSelectedCateogry] = useState("관광명소");
   const [unselected2ndCategories, setUnselected2ndCategories] = useState({});
 
   useEffect(() => {
@@ -17,8 +17,11 @@ const Recommend = ({history}) => {
     }
   }, []);
   function onClick2ndCateogry(e) {
-     if (!(e.target.id in unselected2ndCategories)) {
-      setUnselected2ndCategories({ ...unselected2ndCategories, [e.target.id]: true });
+    if (!(e.target.id in unselected2ndCategories)) {
+      setUnselected2ndCategories({
+        ...unselected2ndCategories,
+        [e.target.id]: true,
+      });
     } else {
       let state = { ...unselected2ndCategories };
       delete state[e.target.id];
@@ -27,7 +30,6 @@ const Recommend = ({history}) => {
     console.log(unselected2ndCategories);
   }
 
-
   function place2ndCategory(e) {
     if (e[0]["세부카테고리"] === 0) {
       return null;
@@ -35,85 +37,88 @@ const Recommend = ({history}) => {
     let set = new Set();
     Object.values(e).forEach((e) => set.add(e["세부카테고리"]));
 
-    return [...set].map((val) => (
-      
+    return [...set].map((val, i) => (
       <FilterCategory
-        unselected = {val in unselected2ndCategories}
-        id={val} onClick={onClick2ndCateogry}>
+        key={i}
+        unselected={val in unselected2ndCategories}
+        id={val}
+        onClick={onClick2ndCateogry}
+      >
         {val}
-      </FilterCategory> 
+      </FilterCategory>
     ));
   }
 
   function placeContainer(e) {
-    return Object.values(e).map((val, index) => (
-      val['세부카테고리'] in unselected2ndCategories ? null :
-      <p onClick={()=>history.push({
-            pathname: "/detail",
-            state:{category:selectedCateogry, index:index}
-          })}>
-        {
-          <div className="row">
-            <img
-              src={
-                val["이미지URL"] !== 0
-                  ? val["이미지URL"]
-                  : "http://www.pngmagic.com/product_images/solid-dark-grey-background.jpg"
-              }
-              alt=""
-            />
-            <div className="context">
-              <div className="title">{val["콘텐츠명"]}</div>
-              <div className="content">{val["제목"]}</div>
+    return Object.values(e).map((val, index) =>
+      val["세부카테고리"] in unselected2ndCategories ? null : (
+        <div
+          key={index}
+          onClick={() =>
+            history.push({
+              pathname: "/detail",
+              state: { category: selectedCateogry, index: index },
+            })
+          }
+        >
+          {
+            <div className="row">
+              <img
+                src={
+                  val["이미지URL"] !== 0
+                    ? val["이미지URL"]
+                    : "http://www.pngmagic.com/product_images/solid-dark-grey-background.jpg"
+                }
+                alt=""
+              />
+              <div className="context">
+                <div className="title">{val["콘텐츠명"]}</div>
+                <div className="content">{val["제목"]}</div>
+              </div>
             </div>
-          </div>
-        }
-      </p>
-    ));
+          }
+        </div>
+      )
+    );
   }
 
-  function displayLists() {}
-
   return (
-    
-      <WholeBox>
-        <RecommendBox>
-          <RecommendTitle>추천 관광지</RecommendTitle>
-          <Line />
-          <Swiper
-            spaceBetween={10}
-            slidesPerView={4}
-            pagination={{ clickable: true }}
-            className="mySwiper"
-          >
-            {Object.keys(data).map((val, idx) => (
-              <SwiperSlide
-                className={`slider ${
-                  selectedCateogry === val && "first-category--selected"
-                }`}
-                id={val}
-                onClick={() => setSelectedCateogry(val)}
-              >
-                {val}
-              </SwiperSlide>
-            ))}
-          </Swiper>
+    <WholeBox>
+      <RecommendBox>
+        <RecommendTitle>추천 관광지</RecommendTitle>
+        <Line />
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={4}
+          pagination={{ clickable: true }}
+          className="mySwiper"
+        >
+          {Object.keys(data).map((val, idx) => (
+            <SwiperSlide
+              key={idx}
+              className={`slider ${
+                selectedCateogry === val && "first-category--selected"
+              }`}
+              id={val}
+              onClick={() => setSelectedCateogry(val)}
+            >
+              {val}
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-          <Line />
-          <FilterCategoryBox>
-            {Object.keys(data).map((category, idx) => (
-              <div>
-                {category === selectedCateogry && place2ndCategory(data[category])}
-              </div>
-            ))}
-          </FilterCategoryBox>
-        </RecommendBox>
-<ContainerBox>
-        {placeContainer(data[selectedCateogry])}
-        </ContainerBox>
-       
-      </WholeBox>
-    
+        <Line />
+        <FilterCategoryBox>
+          {Object.keys(data).map((category, idx) => (
+            <div key={idx}>
+              {category === selectedCateogry &&
+                place2ndCategory(data[category])}
+            </div>
+          ))}
+        </FilterCategoryBox>
+      </RecommendBox>
+      <ContainerBox>{placeContainer(data[selectedCateogry])}</ContainerBox>
+    </WholeBox>
   );
 };
 
@@ -157,7 +162,7 @@ const FilterCategory = styled.div`
   margin: 8px;
   padding: 0 10px;
   border-radius: 100px;
-  background-color: ${props=>props.unselected ? '#7C7B7B' : '#e9a945'};
+  background-color: ${(props) => (props.unselected ? "#7C7B7B" : "#e9a945")};
   text-align: center;
   cursor: pointer;
 `;
@@ -165,7 +170,7 @@ const FilterCategory = styled.div`
 const ContainerBox = styled.div`
   width: 100%;
   height: calc(812px - 250px);
-  overflow : scroll;
+  overflow: scroll;
 `;
 
 export default Recommend;

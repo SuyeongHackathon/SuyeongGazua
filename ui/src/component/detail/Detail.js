@@ -6,69 +6,67 @@ import Location from "./Location";
 import { DataContext } from "../../DataProvider";
 
 const Detail = (props, { history }) => {
-    const category = props.location.state.category;
-    const index = props.location.state.index;
-    const { data, setWeather } = useContext(DataContext);
-    let content = data[category][index];
-    const exceptFieldList = ["필터", '세부카테고리', '이미지URL'];
-    console.log(content['이미지URL'])
-    return (
+  const category = props.location.state.category;
+  const index = props.location.state.index;
+  const { data, setWeather } = useContext(DataContext);
+  let content = data[category][index];
+  const exceptFieldList = ["필터", "세부카테고리", "이미지URL"];
+  console.log(content["이미지URL"]);
+  return (
+    <Container>
+      <Title>
+        <WaveImg src={title} />
+        <div
+          style={{
+            position: "absolute",
+            top: "0",
+            color: "white",
+            margin: "2vh",
+            fontWeight: "bold",
+            fontSize: "30px",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {content["콘텐츠명"]}
+        </div>
+      </Title>
 
-        
-            <Container>
-                <Title>
-                    <WaveImg src={title} />
-                    <div style={{
-                        position: "absolute",
-                        top: "0",
-                        color: "white",
-                        margin: "2vh",
-                        fontWeight: "bold",
-                        fontSize: "30px",
-                        whiteSpace: "nowrap",
+      <Content>
+        <Flexbox>
+          {content["이미지URL"] !== 0 && (
+            <ImgContent>
+              <Img src={content["이미지URL"]} />
+            </ImgContent>
+          )}
+          {Object.entries(content).map((e, i) =>
+            exceptFieldList.includes(e[0]) || e[1] === "" ? null : (
+              <Contents key={i}>
+                <ContetnsTitle>{`${e[0]} : `}</ContetnsTitle>
+                <DataContents>{`  ${e[1]}`}</DataContents>
+              </Contents>
+            )
+          )}
+        </Flexbox>
+      </Content>
 
-                    }}>{content['콘텐츠명']}</div>
-                </Title>
+      <LocationTitle>
+        <div
+          style={{
+            position: "absolute",
+            fontWeight: "bold",
+            fontSize: "25px",
+          }}
+        >
+          위치
+        </div>
+      </LocationTitle>
 
-
-
-                <Content>
-                    <Flexbox>
-                        {content['이미지URL'] !== 0 &&
-                            (<ImgContent>
-                                <Img src={content['이미지URL']} />
-                            </ImgContent>)}
-                        {Object.entries(content).map((e) => (
-                            exceptFieldList.includes(e[0]) || e[1] == "" ? null :
-                                <Contents>
-                                    <ContetnsTitle>{`${e[0]} : `}</ContetnsTitle>
-                                    <DataContents>{`  ${e[1]}`}</DataContents>
-                                </Contents>
-                        ))
-                        }
-
-                    </Flexbox>
-                </Content>
-
-                <LocationTitle>
-                    <div style={{
-                        position: "absolute",
-                        fontWeight: "bold",
-                        fontSize: "25px"
-                    }}>위치</div>
-                </LocationTitle>
-
-                <LocationContainer>
-                    <Location address={content['주소']} />
-                </LocationContainer >
-
-
-            </Container >
-
-        
-    )
-
-}
+      <LocationContainer>
+        <Location address={content["주소"]} />
+      </LocationContainer>
+    </Container>
+  );
+};
 
 const Container = styled.div`
   width: 100%;
