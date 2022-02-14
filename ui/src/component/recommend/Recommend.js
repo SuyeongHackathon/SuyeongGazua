@@ -171,6 +171,9 @@ const ContainerBox = styled.div`
   width: 100%;
   height: calc(812px - 250px);
   overflow: scroll;
+  padding-left: 10px;
+  overflow: auto;
+  cursor: pointer;
 `;
 
 export default Recommend;

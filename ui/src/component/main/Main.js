@@ -57,7 +57,7 @@ const Main = ({ history }) => {
                   ? val["이미지URL"]
                   : "http://www.pngmagic.com/product_images/solid-dark-grey-background.jpg"
               }
-              alt=""
+              alt="no image"
             />
             <div className="context">
               <div className="title">{val["콘텐츠명"]}</div>
