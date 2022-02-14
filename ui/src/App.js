@@ -9,7 +9,7 @@ import "./App.css";
 function App() {
   return (
     <DataProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Route path="/" exact component={Main} />
         <Route path="/recommend" exact component={Recommend} />
         <Route path="/detail" exact component={Detail} />
