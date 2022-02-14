@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/UI/static/css/main.1b496734.chunk.css",
+    "main.js": "/UI/static/js/main.ac5b30ba.chunk.js",
+    "main.js.map": "/UI/static/js/main.ac5b30ba.chunk.js.map",
+    "runtime-main.js": "/UI/static/js/runtime-main.b84a0e85.js",
+    "runtime-main.js.map": "/UI/static/js/runtime-main.b84a0e85.js.map",
+    "static/css/2.ad45b364.chunk.css": "/UI/static/css/2.ad45b364.chunk.css",
+    "static/js/2.7ab428f3.chunk.js": "/UI/static/js/2.7ab428f3.chunk.js",
+    "static/js/2.7ab428f3.chunk.js.map": "/UI/static/js/2.7ab428f3.chunk.js.map",
+    "index.html": "/UI/index.html",
+    "static/css/2.ad45b364.chunk.css.map": "/UI/static/css/2.ad45b364.chunk.css.map",
+    "static/css/main.1b496734.chunk.css.map": "/UI/static/css/main.1b496734.chunk.css.map",
+    "static/js/2.7ab428f3.chunk.js.LICENSE.txt": "/UI/static/js/2.7ab428f3.chunk.js.LICENSE.txt",
+    "static/media/gwangalli.0450d42f.png": "/UI/static/media/gwangalli.0450d42f.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b84a0e85.js",
+    "static/css/2.ad45b364.chunk.css",
+    "static/js/2.7ab428f3.chunk.js",
+    "static/css/main.1b496734.chunk.css",
+    "static/js/main.ac5b30ba.chunk.js"
+  ]
+}
