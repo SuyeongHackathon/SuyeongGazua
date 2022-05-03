@@ -7,3 +7,4 @@ http://www.newsfreezone.co.kr/news/articleView.html?idxno=337528
 
 # Tech Stack
  - React
+ - StyledComponents
